@@ -36,6 +36,22 @@ const calculators = [
     color: '#C084FC',
     features: ['11 Strategies', 'Payoff Diagrams', 'Greeks Display', 'Custom Multi-Leg'],
   },
+  {
+    title: 'Debt Payoff',
+    description: 'Compare Avalanche vs Snowball strategies to eliminate debt faster',
+    href: '/debt-payoff',
+    icon: '\u2193',
+    color: '#F87171',
+    features: ['Avalanche vs Snowball', 'Payoff Timeline', 'Interest Savings', 'Multi-Debt Tracking'],
+  },
+  {
+    title: 'Rent vs Buy',
+    description: 'Full cost analysis comparing renting versus buying a home',
+    href: '/rent-vs-buy',
+    icon: '\u21CC',
+    color: '#FB923C',
+    features: ['Net Worth Comparison', 'Break-even Analysis', 'Appreciation & Investments', 'Tax Benefits'],
+  },
 ];
 
 const container = {
@@ -71,9 +87,9 @@ export default function HomePage() {
           <span className="gold-text">Calculator Suite</span>
         </h1>
         <p className="text-zinc-400 max-w-xl mx-auto text-sm sm:text-base">
-          Four powerful calculators for mortgage planning, investment growth,
-          retirement planning, and options analysis. All calculations run
-          client-side for instant results.
+          Six powerful calculators for mortgage planning, investment growth,
+          retirement planning, options analysis, debt payoff, and rent vs buy decisions.
+          All calculations run client-side for instant results.
         </p>
       </motion.div>
 

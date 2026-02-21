@@ -35,6 +35,18 @@ const navItems = [
     icon: '◇',
     description: 'P/L Visualizer',
   },
+  {
+    label: 'Debt Payoff',
+    href: '/debt-payoff',
+    icon: '↓',
+    description: 'Payoff Strategies',
+  },
+  {
+    label: 'Rent vs Buy',
+    href: '/rent-vs-buy',
+    icon: '⇌',
+    description: 'Home Decision',
+  },
 ];
 
 export function Sidebar() {

@@ -222,6 +222,95 @@ export interface OptionsResult {
   plSurface: { price: number; dte: number; pl: number }[] | null;
 }
 
+// Debt Payoff types
+export interface DebtItem {
+  id: string;
+  name: string;
+  balance: number;
+  interestRate: number; // annual percentage
+  minimumPayment: number;
+}
+
+export interface DebtPayoffInputs {
+  debts: DebtItem[];
+  extraPayment: number; // extra monthly amount to apply
+  strategy: 'avalanche' | 'snowball';
+}
+
+export interface DebtPayoffMonthEntry {
+  month: number;
+  totalBalance: number;
+  totalPayment: number;
+  totalInterest: number;
+  debtBalances: Record<string, number>; // debt id -> remaining balance
+}
+
+export interface DebtPayoffStrategyResult {
+  strategy: 'avalanche' | 'snowball';
+  schedule: DebtPayoffMonthEntry[];
+  totalInterestPaid: number;
+  totalPaid: number;
+  payoffMonths: number;
+  debtPayoffOrder: { id: string; name: string; payoffMonth: number }[];
+}
+
+export interface DebtPayoffResult {
+  avalanche: DebtPayoffStrategyResult;
+  snowball: DebtPayoffStrategyResult;
+  interestSaved: number; // avalanche saves this much vs snowball
+  monthsSaved: number;
+  totalDebt: number;
+  totalMinimumPayments: number;
+}
+
+// Rent vs Buy types
+export interface RentVsBuyInputs {
+  homePrice: number;
+  downPaymentPercent: number;
+  mortgageRate: number; // annual %
+  loanTerm: number; // years
+  propertyTaxRate: number; // annual % of home value
+  homeInsuranceAnnual: number;
+  maintenanceRate: number; // annual % of home value
+  homeAppreciationRate: number; // annual %
+  closingCostPercent: number; // buying closing costs %
+  sellingCostPercent: number; // selling closing costs %
+  monthlyRent: number;
+  annualRentIncrease: number; // %
+  investmentReturnRate: number; // annual % on savings difference
+  timeHorizon: number; // years to compare
+  marginalTaxRate: number; // for mortgage interest deduction
+  inflationRate: number;
+}
+
+export interface RentVsBuyYearEntry {
+  year: number;
+  // Buy side
+  homeValue: number;
+  loanBalance: number;
+  homeEquity: number;
+  buyMonthlyCost: number; // mortgage + tax + insurance + maintenance
+  buyCumulativeCost: number;
+  buyNetWorth: number; // home equity - remaining costs
+  // Rent side
+  monthlyRent: number;
+  rentCumulativeCost: number;
+  investmentBalance: number; // invested savings from lower monthly cost
+  rentNetWorth: number; // investment balance
+}
+
+export interface RentVsBuyResult {
+  yearlyData: RentVsBuyYearEntry[];
+  breakEvenYear: number | null; // year when buying becomes better
+  buyTotalCost: number;
+  rentTotalCost: number;
+  buyNetWorthFinal: number;
+  rentNetWorthFinal: number;
+  netAdvantage: number; // positive = buying is better
+  monthlyMortgagePayment: number;
+  initialBuyingCosts: number; // down payment + closing costs
+}
+
 // Chart types
 export interface ChartTheme {
   gold: string;
