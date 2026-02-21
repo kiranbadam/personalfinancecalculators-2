@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/layout/Sidebar";
@@ -15,6 +16,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata: Metadata = {
+  title: "FinCalc - Personal Finance Calculator Suite",
+  description: "Professional personal finance calculators: Mortgage, Compound Interest, FIRE Retirement, and Options P/L.",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,10 +28,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <title>FinCalc - Personal Finance Calculator Suite</title>
-        <meta name="description" content="Professional personal finance calculators: Mortgage, Compound Interest, FIRE Retirement, and Options P/L." />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-950 min-h-screen`}
       >
