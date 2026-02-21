@@ -222,6 +222,55 @@ export interface OptionsResult {
   plSurface: { price: number; dte: number; pl: number }[] | null;
 }
 
+// Rent vs Buy types
+export interface RentBuyInputs {
+  homePrice: number;
+  downPayment: number;
+  mortgageRate: number;
+  loanTerm: number;
+  monthlyRent: number;
+  timeHorizon: number;
+  // Advanced options
+  homeAppreciation: number;
+  rentIncreaseRate: number;
+  investmentReturnRate: number;
+  propertyTaxRate: number;
+  maintenanceRate: number;
+  buyingClosingCostRate: number;
+  sellingClosingCostRate: number;
+  marginalTaxRate: number;
+  annualInsurance: number;
+}
+
+export interface RentBuyYearEntry {
+  year: number;
+  // Buy scenario
+  homeValue: number;
+  mortgageBalance: number;
+  equity: number;
+  buyNetWorth: number;
+  cumulativeBuyCosts: number;
+  // Rent scenario
+  monthlyRent: number;
+  investmentPortfolio: number;
+  rentNetWorth: number;
+  cumulativeRentCosts: number;
+  // Comparison
+  advantage: 'buy' | 'rent' | 'equal';
+  advantageAmount: number;
+}
+
+export interface RentBuyResult {
+  yearlyData: RentBuyYearEntry[];
+  breakEvenYear: number | null;
+  finalBuyNetWorth: number;
+  finalRentNetWorth: number;
+  winner: 'buy' | 'rent' | 'equal';
+  winnerAdvantage: number;
+  monthlyMortgagePayment: number;
+  initialMonthlyCostDiff: number;
+}
+
 // Chart types
 export interface ChartTheme {
   gold: string;

@@ -35,6 +35,12 @@ const navItems = [
     icon: '◇',
     description: 'P/L Visualizer',
   },
+  {
+    label: 'Rent vs Buy',
+    href: '/rent-buy',
+    icon: '⇄',
+    description: 'Cost Analysis',
+  },
 ];
 
 export function Sidebar() {

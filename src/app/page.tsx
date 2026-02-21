@@ -36,6 +36,14 @@ const calculators = [
     color: '#C084FC',
     features: ['11 Strategies', 'Payoff Diagrams', 'Greeks Display', 'Custom Multi-Leg'],
   },
+  {
+    title: 'Rent vs Buy',
+    description: 'Full cost analysis comparing renting (invest the savings) versus buying a home',
+    href: '/rent-buy',
+    icon: '\u21c4',
+    color: '#F97316',
+    features: ['Net Worth Chart', 'Break-Even Year', 'Cumulative Costs', 'Year-by-Year Table'],
+  },
 ];
 
 const container = {

@@ -10,6 +10,7 @@ const navItems = [
   { label: 'Compound', href: '/compound', icon: '◎' },
   { label: 'FIRE', href: '/fire', icon: '▲' },
   { label: 'Options', href: '/options', icon: '◇' },
+  { label: 'Rent/Buy', href: '/rent-buy', icon: '⇄' },
 ];
 
 export function MobileNav() {
