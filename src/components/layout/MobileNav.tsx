@@ -11,6 +11,7 @@ const navItems = [
   { label: 'FIRE', href: '/fire', icon: '▲' },
   { label: 'Options', href: '/options', icon: '◇' },
   { label: 'Rent/Buy', href: '/rent-buy', icon: '⇄' },
+  { label: 'Debt', href: '/debt-payoff', icon: '↓' },
 ];
 
 export function MobileNav() {

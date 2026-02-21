@@ -41,6 +41,12 @@ const navItems = [
     icon: '⇄',
     description: 'Cost Analysis',
   },
+  {
+    label: 'Debt Payoff',
+    href: '/debt-payoff',
+    icon: '↓',
+    description: 'Payoff Strategy',
+  },
 ];
 
 export function Sidebar() {

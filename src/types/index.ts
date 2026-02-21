@@ -290,3 +290,61 @@ export interface NavItem {
   icon: string;
   description: string;
 }
+
+// Debt Payoff types
+export type PayoffStrategy = 'avalanche' | 'snowball' | 'custom';
+
+export interface Debt {
+  id: string;
+  name: string;
+  balance: number;
+  interestRate: number;
+  minimumPayment: number;
+}
+
+export interface DebtPayoffInputs {
+  debts: Debt[];
+  extraMonthlyPayment: number;
+  strategy: PayoffStrategy;
+}
+
+export interface DebtMonthEntry {
+  month: number;
+  debtId: string;
+  balance: number;
+  payment: number;
+  interest: number;
+  principal: number;
+}
+
+export interface DebtPayoffSummary {
+  debtId: string;
+  name: string;
+  originalBalance: number;
+  totalInterestPaid: number;
+  payoffMonth: number;
+  payoffDate: Date;
+}
+
+export interface DebtPayoffMonthlySnapshot {
+  month: number;
+  totalBalance: number;
+  totalPayment: number;
+  totalInterest: number;
+  totalPrincipal: number;
+  debtsRemaining: number;
+}
+
+export interface DebtPayoffResult {
+  strategy: PayoffStrategy;
+  monthlySnapshots: DebtPayoffMonthlySnapshot[];
+  debtSummaries: DebtPayoffSummary[];
+  totalMonths: number;
+  totalInterestPaid: number;
+  totalAmountPaid: number;
+  payoffDate: Date;
+  minimumOnlyMonths: number;
+  minimumOnlyInterest: number;
+  interestSaved: number;
+  monthsSaved: number;
+}

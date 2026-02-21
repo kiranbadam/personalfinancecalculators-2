@@ -44,6 +44,14 @@ const calculators = [
     color: '#F97316',
     features: ['Net Worth Chart', 'Break-Even Year', 'Cumulative Costs', 'Year-by-Year Table'],
   },
+  {
+    title: 'Debt Payoff Calculator',
+    description: 'Avalanche vs snowball strategy comparison with payoff timeline and interest analysis',
+    href: '/debt-payoff',
+    icon: '\u2193',
+    color: '#F43F5E',
+    features: ['Avalanche & Snowball', 'Payoff Timeline', 'Interest Savings', 'Per-Debt Schedule'],
+  },
 ];
 
 const container = {
