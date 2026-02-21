@@ -1,65 +1,141 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+
+const calculators = [
+  {
+    title: 'Mortgage Calculator',
+    description: 'Amortization schedule, payment breakdown, and extra payment analysis',
+    href: '/mortgage',
+    icon: '\u2302',
+    color: '#D4A853',
+    features: ['Payment Breakdown', 'Amortization Chart', 'Extra Payment Savings', 'PMI Tracking'],
+  },
+  {
+    title: 'Compound Interest',
+    description: 'Visualize investment growth with contribution escalation and inflation',
+    href: '/compound',
+    icon: '\u25CE',
+    color: '#4ADE80',
+    features: ['Growth Projections', 'Milestone Tracking', 'Scenario Comparison', 'Tax Drag Analysis'],
+  },
+  {
+    title: 'FIRE Calculator',
+    description: 'Financial Independence, Retire Early planning with Monte Carlo simulation',
+    href: '/fire',
+    icon: '\u25B2',
+    color: '#60A5FA',
+    features: ['FIRE Number', 'Monte Carlo Sim', 'Coast/Lean/Fat FIRE', 'Social Security'],
+  },
+  {
+    title: 'Options Visualizer',
+    description: 'Options strategy P/L diagrams with Black-Scholes Greeks',
+    href: '/options',
+    icon: '\u25C7',
+    color: '#C084FC',
+    features: ['11 Strategies', 'Payoff Diagrams', 'Greeks Display', 'Custom Multi-Leg'],
+  },
+];
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-[calc(100vh-4rem)]">
+      {/* Hero */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-center py-12 sm:py-20"
+      >
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4A853]/10 border border-[#D4A853]/20 mb-6">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] animate-pulse" />
+          <span className="text-xs text-[#D4A853] font-medium">Professional Finance Tools</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+          Personal Finance
+          <br />
+          <span className="gold-text">Calculator Suite</span>
+        </h1>
+        <p className="text-zinc-400 max-w-xl mx-auto text-sm sm:text-base">
+          Four powerful calculators for mortgage planning, investment growth,
+          retirement planning, and options analysis. All calculations run
+          client-side for instant results.
+        </p>
+      </motion.div>
+
+      {/* Calculator Cards */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl mx-auto"
+      >
+        {calculators.map((calc) => (
+          <motion.div key={calc.href} variants={item}>
+            <Link href={calc.href} className="block group">
+              <div className="glass-card rounded-xl p-6 h-full transition-all duration-300 hover:border-[rgba(212,168,83,0.2)] hover:shadow-lg hover:shadow-[#D4A853]/5 hover:-translate-y-0.5">
+                <div className="flex items-start justify-between mb-4">
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center text-xl"
+                    style={{ backgroundColor: `${calc.color}15`, color: calc.color }}
+                  >
+                    {calc.icon}
+                  </div>
+                  <svg
+                    className="w-4 h-4 text-zinc-600 group-hover:text-[#D4A853] transition-colors"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </div>
+
+                <h2 className="text-lg font-semibold text-white mb-1 group-hover:text-[#D4A853] transition-colors">
+                  {calc.title}
+                </h2>
+                <p className="text-xs text-zinc-500 mb-4">{calc.description}</p>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {calc.features.map((feature) => (
+                    <span
+                      key={feature}
+                      className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-800/80 text-zinc-400"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Footer */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+        className="text-center py-12 text-xs text-zinc-600"
+      >
+        Built with Next.js 15 &middot; Tailwind CSS &middot; Recharts &middot; Framer Motion
+      </motion.div>
     </div>
   );
 }
